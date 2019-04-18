@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cypro.ascpay.provider.nocard.mapper.NocardPayMapper">
+  <resultMap id="BaseResultMap" type="com.cypro.ascpay.provider.nocard.entity.NocardPayEntity">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="amount" jdbcType="VARCHAR" property="amount" />
+    <result column="rate" jdbcType="VARCHAR" property="rate" />
+    <result column="fee" jdbcType="VARCHAR" property="fee" />
+    <result column="sum_fee" jdbcType="VARCHAR" property="sumFee" />
+    <result column="sel_amt" jdbcType="VARCHAR" property="selAmt" />
+    <result column="card_code" jdbcType="VARCHAR" property="cardCode" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="valid" jdbcType="VARCHAR" property="valid" />
+    <result column="cvv2" jdbcType="VARCHAR" property="cvv2" />
+    <result column="card_phone" jdbcType="VARCHAR" property="cardPhone" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="idcard" jdbcType="VARCHAR" property="idcard" />
+    <result column="settle_card" jdbcType="VARCHAR" property="settleCard" />
+    <result column="settle_phone" jdbcType="VARCHAR" property="settlePhone" />
+    <result column="notifyurl" jdbcType="VARCHAR" property="notifyurl" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="order_states" jdbcType="VARCHAR" property="orderStates" />
+    <result column="order_desc" jdbcType="VARCHAR" property="orderDesc" />
+    <result column="crea_time" jdbcType="TIMESTAMP" property="creaTime" />
+    <result column="relea_id" jdbcType="TIMESTAMP" property="releaId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_no, amount, rate, fee, sum_fee, sel_amt, card_code, real_name, `valid`, 
+    cvv2, card_phone, bank_name, idcard, settle_card, settle_phone, notifyurl, user_id, 
+    order_states, order_desc, crea_time,relea_id
+  </sql>
+  <sql id="table_name">
+    t_nocard_pay
+  </sql>
+  <sql id="sqlWhere">
+    <where>
+      <if test="id != null and id != ''">
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="orderNo != null and orderNo != ''">
+        and order_no = #{orderNo,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </sql>
+
+  <!-- 查询(含条件查询)-->
+  <select id="query" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    <include refid="table_name"/>
+    <include refid="sqlWhere"/>
+  </select>
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_nocard_pay
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_nocard_pay
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+
+  <insert id="insert" parameterType="com.cypro.ascpay.provider.nocard.entity.NocardPayEntity">
+    insert into t_nocard_pay ( order_no, amount,
+      rate, fee, sum_fee, 
+      sel_amt, card_code, real_name, 
+      `valid`, cvv2, card_phone, 
+      bank_name, idcard, settle_card, 
+      settle_phone, notifyurl, user_id, 
+      order_states, order_desc,relea_id
+      )
+    values ( #{orderNo,jdbcType=VARCHAR}, #{amount,jdbcType=VARCHAR},
+      #{rate,jdbcType=VARCHAR}, #{fee,jdbcType=VARCHAR}, #{sumFee,jdbcType=VARCHAR}, 
+      #{selAmt,jdbcType=VARCHAR}, #{cardCode,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
+      #{valid,jdbcType=VARCHAR}, #{cvv2,jdbcType=VARCHAR}, #{cardPhone,jdbcType=VARCHAR}, 
+      #{bankName,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{settleCard,jdbcType=VARCHAR}, 
+      #{settlePhone,jdbcType=VARCHAR}, #{notifyurl,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{orderStates,jdbcType=VARCHAR}, #{orderDesc,jdbcType=VARCHAR},#{releaId,jdbcType=VARCHAR}
+      )
+  </insert>
+
+
+
+  <insert id="insertSelective" parameterType="com.cypro.ascpay.provider.nocard.entity.NocardPayEntity">
+    insert into t_nocard_pay
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="rate != null">
+        rate,
+      </if>
+      <if test="fee != null">
+        fee,
+      </if>
+      <if test="sumFee != null">
+        sum_fee,
+      </if>
+      <if test="selAmt != null">
+        sel_amt,
+      </if>
+      <if test="cardCode != null">
+        card_code,
+      </if>
+      <if test="realName != null">
+        real_name,
+      </if>
+      <if test="valid != null">
+        `valid`,
+      </if>
+      <if test="cvv2 != null">
+        cvv2,
+      </if>
+      <if test="cardPhone != null">
+        card_phone,
+      </if>
+      <if test="bankName != null">
+        bank_name,
+      </if>
+      <if test="idcard != null">
+        idcard,
+      </if>
+      <if test="settleCard != null">
+        settle_card,
+      </if>
+      <if test="settlePhone != null">
+        settle_phone,
+      </if>
+      <if test="notifyurl != null">
+        notifyurl,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="orderStates != null">
+        order_states,
+      </if>
+      <if test="orderDesc != null">
+        order_desc,
+      </if>
+      <if test="creaTime != null">
+        crea_time,
+      </if>
+      <if test="releaId != null">
+        relea_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null">
+        #{fee,jdbcType=VARCHAR},
+      </if>
+      <if test="sumFee != null">
+        #{sumFee,jdbcType=VARCHAR},
+      </if>
+      <if test="selAmt != null">
+        #{selAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="cardCode != null">
+        #{cardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="valid != null">
+        #{valid,jdbcType=VARCHAR},
+      </if>
+      <if test="cvv2 != null">
+        #{cvv2,jdbcType=VARCHAR},
+      </if>
+      <if test="cardPhone != null">
+        #{cardPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="settleCard != null">
+        #{settleCard,jdbcType=VARCHAR},
+      </if>
+      <if test="settlePhone != null">
+        #{settlePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyurl != null">
+        #{notifyurl,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStates != null">
+        #{orderStates,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDesc != null">
+        #{orderDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="creaTime != null">
+        #{creaTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="releaId != null">
+        #{relea_id,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="update" parameterType="com.cypro.ascpay.provider.nocard.entity.NocardPayEntity">
+    update t_nocard_pay
+    <set>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null">
+        rate = #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null">
+        fee = #{fee,jdbcType=VARCHAR},
+      </if>
+      <if test="sumFee != null">
+        sum_fee = #{sumFee,jdbcType=VARCHAR},
+      </if>
+      <if test="selAmt != null">
+        sel_amt = #{selAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="cardCode != null">
+        card_code = #{cardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="valid != null">
+        `valid` = #{valid,jdbcType=VARCHAR},
+      </if>
+      <if test="cvv2 != null">
+        cvv2 = #{cvv2,jdbcType=VARCHAR},
+      </if>
+      <if test="cardPhone != null">
+        card_phone = #{cardPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="settleCard != null">
+        settle_card = #{settleCard,jdbcType=VARCHAR},
+      </if>
+      <if test="settlePhone != null">
+        settle_phone = #{settlePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyurl != null">
+        notifyurl = #{notifyurl,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStates != null">
+        order_states = #{orderStates,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDesc != null">
+        order_desc = #{orderDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="creaTime != null">
+        crea_time = #{creaTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="releaId != null">
+        relea_id = #{releaId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <update id="updateByPrimaryKey" parameterType="com.cypro.ascpay.provider.nocard.entity.NocardPayEntity">
+    update t_nocard_pay
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=VARCHAR},
+      rate = #{rate,jdbcType=VARCHAR},
+      fee = #{fee,jdbcType=VARCHAR},
+      sum_fee = #{sumFee,jdbcType=VARCHAR},
+      sel_amt = #{selAmt,jdbcType=VARCHAR},
+      card_code = #{cardCode,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      `valid` = #{valid,jdbcType=VARCHAR},
+      cvv2 = #{cvv2,jdbcType=VARCHAR},
+      card_phone = #{cardPhone,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      settle_card = #{settleCard,jdbcType=VARCHAR},
+      settle_phone = #{settlePhone,jdbcType=VARCHAR},
+      notifyurl = #{notifyurl,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      order_states = #{orderStates,jdbcType=VARCHAR},
+      order_desc = #{orderDesc,jdbcType=VARCHAR},
+      crea_time = #{creaTime,jdbcType=TIMESTAMP},
+      relea_id = #{releaId,jdbcType=VARCHAR},
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+</mapper>

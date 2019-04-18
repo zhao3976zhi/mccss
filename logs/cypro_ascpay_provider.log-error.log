@@ -1,0 +1,16 @@
+2019-04-18 01:39:49.481 [DubboServerHandler-192.168.213.1:7099-thread-41] ERROR c.c.a.p.r.s.i.ReplaceInfoServiceImpl
+				-出错了,Error:
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'mer_id' in 'where clause'
+### The error may involve com.cypro.ascpay.provider.replace.mapper.ReplaceInfoMapper.update-Inline
+### The error occurred while setting parameters
+### SQL: update t_replace_info      SET card_no = ?,                       bank_name = ?,                       phone = ?,                                                          rate = ?,                       fee = ?,                              mer_id = ?       WHERE  mer_id = ?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'mer_id' in 'where clause'
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'mer_id' in 'where clause'
+2019-04-18 01:41:42.832 [DubboServerHandler-192.168.213.1:7099-thread-5] ERROR c.c.a.p.r.s.i.ReplaceInfoServiceImpl
+				-出错了,Error:
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'mer_id' in 'where clause'
+### The error may involve com.cypro.ascpay.provider.replace.mapper.ReplaceInfoMapper.update-Inline
+### The error occurred while setting parameters
+### SQL: update t_replace_info      SET card_no = ?,                       bank_name = ?,                       phone = ?,                                                          rate = ?,                       fee = ?,                              mer_id = ?       WHERE  mer_id = ?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'mer_id' in 'where clause'
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'mer_id' in 'where clause'

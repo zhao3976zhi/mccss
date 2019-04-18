@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cypro.ascpay.provider.replace.mapper.ReplaceBankMapper">
+  <resultMap id="BaseResultMap" type="com.cypro.ascpay.provider.replace.entity.ReplaceBankEntity">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="rate" jdbcType="VARCHAR" property="rate" />
+    <result column="fee" jdbcType="VARCHAR" property="fee" />
+    <result column="relea_id" jdbcType="BIGINT" property="releaId" />
+    <result column="crea_time" jdbcType="TIMESTAMP" property="creaTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `name`, rate, fee, relea_id, crea_time
+  </sql>
+
+  <sql id="table_name">
+    t_replace_bank
+  </sql>
+
+  <sql id="sqlWhere">
+    <where>
+      <if test="id != null and id != ''">
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="bankName != null and bankName != ''">
+        and name = #{bankName,jdbcType=VARCHAR}
+      </if>
+      <if test="releaId != null and releaId != ''">
+        and relea_id = #{releaId,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </sql>
+
+  <!-- 查询(含条件查询)-->
+  <select id="query" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    <include refid="table_name"/>
+    <include refid="sqlWhere"/>
+  </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_replace_bank
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_replace_bank
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cypro.ascpay.provider.replace.entity.ReplaceBankEntity">
+    insert into t_replace_bank (id, `name`, rate, 
+      fee, relea_id, crea_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{rate,jdbcType=VARCHAR}, 
+      #{fee,jdbcType=VARCHAR}, #{releaId,jdbcType=BIGINT}, #{creaTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cypro.ascpay.provider.replace.entity.ReplaceBankEntity">
+    insert into t_replace_bank
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="rate != null">
+        rate,
+      </if>
+      <if test="fee != null">
+        fee,
+      </if>
+      <if test="releaId != null">
+        relea_id,
+      </if>
+      <if test="creaTime != null">
+        crea_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null">
+        #{fee,jdbcType=VARCHAR},
+      </if>
+      <if test="releaId != null">
+        #{releaId,jdbcType=BIGINT},
+      </if>
+      <if test="creaTime != null">
+        #{creaTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cypro.ascpay.provider.replace.entity.ReplaceBankEntity">
+    update t_replace_bank
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null">
+        rate = #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null">
+        fee = #{fee,jdbcType=VARCHAR},
+      </if>
+      <if test="releaId != null">
+        relea_id = #{releaId,jdbcType=BIGINT},
+      </if>
+      <if test="creaTime != null">
+        crea_time = #{creaTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cypro.ascpay.provider.replace.entity.ReplaceBankEntity">
+    update t_replace_bank
+    set `name` = #{name,jdbcType=VARCHAR},
+      rate = #{rate,jdbcType=VARCHAR},
+      fee = #{fee,jdbcType=VARCHAR},
+      relea_id = #{releaId,jdbcType=BIGINT},
+      crea_time = #{creaTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

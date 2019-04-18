@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cypro.ascpay.provider.replace.mapper.ReplacePaymentMapper">
+  <resultMap id="BaseResultMap" type="com.cypro.ascpay.provider.replace.entity.ReplacePaymentEntity">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="pm_orderno" jdbcType="VARCHAR" property="pmOrderno" />
+    <result column="pm_amount" jdbcType="VARCHAR" property="pmAmount" />
+    <result column="pm_rate" jdbcType="VARCHAR" property="pmRate" />
+    <result column="pm_fee" jdbcType="VARCHAR" property="pmFee" />
+    <result column="pm_userid" jdbcType="VARCHAR" property="pmUserid" />
+    <result column="pm_notifyUrl" jdbcType="VARCHAR" property="pmNotifyurl" />
+    <result column="pm_states" jdbcType="VARCHAR" property="pmStates" />
+    <result column="pm_desc" jdbcType="VARCHAR" property="pmDesc" />
+    <result column="crea_time" jdbcType="TIMESTAMP" property="creaTime" />
+    <result column="relea_id" jdbcType="VARCHAR" property="releaId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pm_orderno, pm_amount, pm_rate, pm_fee, pm_userid, pm_notifyUrl, pm_states , pm_desc ,crea_time,relea_id
+  </sql>
+  <sql id="table_name">
+    t_replace_payment
+  </sql>
+  <sql id="sqlWhere">
+    <where>
+      <if test="id != null and id != ''">
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="pmOrderno != null and pmOrderno != ''">
+        and pm_orderno = #{pmOrderno,jdbcType=BIGINT}
+      </if>
+    </where>
+  </sql>
+
+  <!-- 查询(含条件查询)-->
+  <select id="query" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    <include refid="table_name"/>
+    <include refid="sqlWhere"/>
+  </select>
+
+  <insert id="insert" parameterType="com.cypro.ascpay.provider.replace.entity.ReplacePaymentEntity" keyProperty="id" useGeneratedKeys="true">
+    insert into t_replace_payment ( pm_orderno, pm_amount,
+      pm_rate, pm_fee, pm_userid,
+      pm_notifyUrl, pm_states, pm_desc,relea_id)
+    values ( #{pmOrderno,jdbcType=VARCHAR}, #{pmAmount,jdbcType=VARCHAR},
+      #{pmRate,jdbcType=VARCHAR}, #{pmFee,jdbcType=VARCHAR}, #{pmUserid,jdbcType=VARCHAR},
+      #{pmNotifyurl,jdbcType=VARCHAR}, #{pmStates,jdbcType=VARCHAR}, #{pmDesc,jdbcType=VARCHAR},
+      #{releaId,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="update" parameterType="com.cypro.ascpay.provider.replace.entity.ReplaceReleaEntity">
+    update t_replace_payment
+    <set>
+      <if test="pmOrderno != null">
+        pm_orderno = #{pmOrderno,jdbcType=VARCHAR},
+      </if>
+      <if test="pmAmount != null">
+        pm_amount = #{pmAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="pmRate != null">
+        pm_rate = #{pmRate,jdbcType=VARCHAR},
+      </if>
+      <if test="pmFee != null">
+        pm_fee = #{pmFee,jdbcType=VARCHAR},
+      </if>
+      <if test="pmUserid != null">
+        pm_userid = #{pmUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="pmNotifyurl != null">
+        pm_notifyUrl = #{pmNotifyurl,jdbcType=VARCHAR},
+      </if>
+      <if test="pmStates != null">
+        pm_states = #{pmStates,jdbcType=VARCHAR},
+      </if>
+      <if test="pmDesc != null">
+        pm_desc = #{pmDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="releaId != null">
+        relea_id = #{releaId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+</mapper>

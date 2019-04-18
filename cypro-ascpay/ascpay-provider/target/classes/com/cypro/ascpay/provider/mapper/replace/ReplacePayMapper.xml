@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cypro.ascpay.provider.replace.mapper.ReplacePayMapper">
+  <resultMap id="BaseResultMap" type="com.cypro.ascpay.provider.replace.entity.ReplacePayEntity">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="pay_order_no" jdbcType="VARCHAR" property="payOrderNo" />
+    <result column="pay_tran_amt" jdbcType="VARCHAR" property="payTranAmt" />
+    <result column="pay_rout_amt" jdbcType="VARCHAR" property="payRoutAmt" />
+    <result column="pay_fact_amt" jdbcType="VARCHAR" property="payFactAmt" />
+    <result column="pay_order_states" jdbcType="VARCHAR" property="payOrderStates" />
+    <result column="pay_order_desc" jdbcType="VARCHAR" property="payOrderDesc" />
+    <result column="pay_name" jdbcType="VARCHAR" property="payName" />
+    <result column="pay_idcard" jdbcType="VARCHAR" property="payIdcard" />
+    <result column="pay_cardcode" jdbcType="VARCHAR" property="payCardcode" />
+    <result column="pay_phone" jdbcType="VARCHAR" property="payPhone" />
+    <result column="pay_notifyurl" jdbcType="VARCHAR" property="payNotifyurl" />
+    <result column="userid" jdbcType="VARCHAR" property="userId" />
+    <result column="crea_time" jdbcType="TIMESTAMP" property="creaTime" />
+    <result column="relea_id" jdbcType="VARCHAR" property="releaId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pay_order_no, pay_tran_amt, pay_rout_amt, pay_fact_amt, pay_order_states, pay_order_desc, 
+    pay_name, pay_idcard, pay_cardcode, pay_phone, pay_notifyurl, userid, crea_time,
+    relea_id
+  </sql>
+  <sql id="table_name">
+    t_replace_pay
+  </sql>
+  <sql id="sqlWhere">
+    <where>
+      <if test="id != null and id != ''">
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="payOrderNo != null and payOrderNo != ''">
+        and pay_order_no = #{payOrderNo,jdbcType=BIGINT}
+      </if>
+    </where>
+  </sql>
+
+  <!-- 查询(含条件查询)-->
+  <select id="query" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    <include refid="table_name"/>
+    <include refid="sqlWhere"/>
+  </select>
+
+  <insert id="insert" parameterType="com.cypro.ascpay.provider.replace.entity.ReplacePayEntity" keyProperty="id" useGeneratedKeys="true">
+    insert into t_replace_pay (id, pay_order_no, pay_tran_amt,
+      pay_rout_amt, pay_fact_amt, pay_order_states,
+      pay_order_desc, pay_name, pay_idcard,
+      pay_cardcode, pay_phone, pay_notifyurl,
+      userid, crea_time, relea_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{payOrderNo,jdbcType=BIGINT}, #{payTranAmt,jdbcType=BIGINT},
+      #{payRoutAmt,jdbcType=BIGINT}, #{payFactAmt,jdbcType=BIGINT}, #{payOrderStates,jdbcType=VARCHAR},
+      #{payOrderDesc,jdbcType=VARCHAR}, #{payName,jdbcType=VARCHAR}, #{payIdcard,jdbcType=VARCHAR},
+      #{payCardcode,jdbcType=VARCHAR}, #{payPhone,jdbcType=VARCHAR}, #{payNotifyurl,jdbcType=VARCHAR},
+      #{userId,jdbcType=VARCHAR}, #{creaTime,jdbcType=TIMESTAMP}, #{releaId,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <update id="update" parameterType="com.cypro.ascpay.provider.replace.entity.ReplacePayEntity">
+    update t_replace_pay
+    <set>
+      <if test="payOrderNo != null">
+        pay_order_no = #{payOrderNo,jdbcType=BIGINT},
+      </if>
+      <if test="payTranAmt != null">
+        pay_tran_amt = #{payTranAmt,jdbcType=BIGINT},
+      </if>
+      <if test="payRoutAmt != null">
+        pay_rout_amt = #{payRoutAmt,jdbcType=BIGINT},
+      </if>
+      <if test="payFactAmt != null">
+        pay_fact_amt = #{payFactAmt,jdbcType=BIGINT},
+      </if>
+      <if test="payOrderStates != null">
+        pay_order_states = #{payOrderStates,jdbcType=VARCHAR},
+      </if>
+      <if test="payOrderDesc != null">
+        pay_order_desc = #{payOrderDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="payName != null">
+        pay_name = #{payName,jdbcType=VARCHAR},
+      </if>
+      <if test="payIdcard != null">
+        pay_idcard = #{payIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="payCardcode != null">
+        pay_cardcode = #{payCardcode,jdbcType=VARCHAR},
+      </if>
+      <if test="payPhone != null">
+        pay_phone = #{payPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="payNotifyurl != null">
+        pay_notifyurl = #{payNotifyurl,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        userid = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="creaTime != null">
+        crea_time = #{creaTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="releaId != null">
+        relea_id = #{releaId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_replace_pay
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_replace_pay
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.cypro.ascpay.provider.replace.entity.ReplacePayEntity">
+    insert into t_replace_pay
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="payOrderNo != null">
+        pay_order_no,
+      </if>
+      <if test="payTranAmt != null">
+        pay_tran_amt,
+      </if>
+      <if test="payRoutAmt != null">
+        pay_rout_amt,
+      </if>
+      <if test="payFactAmt != null">
+        pay_fact_amt,
+      </if>
+      <if test="payOrderStates != null">
+        pay_order_states,
+      </if>
+      <if test="payOrderDesc != null">
+        pay_order_desc,
+      </if>
+      <if test="payName != null">
+        pay_name,
+      </if>
+      <if test="payIdcard != null">
+        pay_idcard,
+      </if>
+      <if test="payCardcode != null">
+        pay_cardcode,
+      </if>
+      <if test="payPhone != null">
+        pay_phone,
+      </if>
+      <if test="payNotifyurl != null">
+        pay_notifyurl,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="creaTime != null">
+        crea_time,
+      </if>
+      <if test="releaNo != null">
+        relea_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="payOrderNo != null">
+        #{payOrderNo,jdbcType=BIGINT},
+      </if>
+      <if test="payTranAmt != null">
+        #{payTranAmt,jdbcType=BIGINT},
+      </if>
+      <if test="payRoutAmt != null">
+        #{payRoutAmt,jdbcType=BIGINT},
+      </if>
+      <if test="payFactAmt != null">
+        #{payFactAmt,jdbcType=BIGINT},
+      </if>
+      <if test="payOrderStates != null">
+        #{payOrderStates,jdbcType=VARCHAR},
+      </if>
+      <if test="payOrderDesc != null">
+        #{payOrderDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="payName != null">
+        #{payName,jdbcType=VARCHAR},
+      </if>
+      <if test="payIdcard != null">
+        #{payIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="payCardcode != null">
+        #{payCardcode,jdbcType=VARCHAR},
+      </if>
+      <if test="payPhone != null">
+        #{payPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="payNotifyurl != null">
+        #{payNotifyurl,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="creaTime != null">
+        #{creaTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="releaNo != null">
+        #{releaNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cypro.ascpay.provider.replace.entity.ReplacePayEntity">
+    update t_replace_pay
+    <set>
+      <if test="payOrderNo != null">
+        pay_order_no = #{payOrderNo,jdbcType=BIGINT},
+      </if>
+      <if test="payTranAmt != null">
+        pay_tran_amt = #{payTranAmt,jdbcType=BIGINT},
+      </if>
+      <if test="payRoutAmt != null">
+        pay_rout_amt = #{payRoutAmt,jdbcType=BIGINT},
+      </if>
+      <if test="payFactAmt != null">
+        pay_fact_amt = #{payFactAmt,jdbcType=BIGINT},
+      </if>
+      <if test="payOrderStates != null">
+        pay_order_states = #{payOrderStates,jdbcType=VARCHAR},
+      </if>
+      <if test="payOrderDesc != null">
+        pay_order_desc = #{payOrderDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="payName != null">
+        pay_name = #{payName,jdbcType=VARCHAR},
+      </if>
+      <if test="payIdcard != null">
+        pay_idcard = #{payIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="payCardcode != null">
+        pay_cardcode = #{payCardcode,jdbcType=VARCHAR},
+      </if>
+      <if test="payPhone != null">
+        pay_phone = #{payPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="payNotifyurl != null">
+        pay_notifyurl = #{payNotifyurl,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="creaTime != null">
+        crea_time = #{creaTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="releaNo != null">
+        relea_no = #{releaNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cypro.ascpay.provider.replace.entity.ReplacePayEntity">
+    update t_replace_pay
+    set pay_order_no = #{payOrderNo,jdbcType=BIGINT},
+      pay_tran_amt = #{payTranAmt,jdbcType=BIGINT},
+      pay_rout_amt = #{payRoutAmt,jdbcType=BIGINT},
+      pay_fact_amt = #{payFactAmt,jdbcType=BIGINT},
+      pay_order_states = #{payOrderStates,jdbcType=VARCHAR},
+      pay_order_desc = #{payOrderDesc,jdbcType=VARCHAR},
+      pay_name = #{payName,jdbcType=VARCHAR},
+      pay_idcard = #{payIdcard,jdbcType=VARCHAR},
+      pay_cardcode = #{payCardcode,jdbcType=VARCHAR},
+      pay_phone = #{payPhone,jdbcType=VARCHAR},
+      pay_notifyurl = #{payNotifyurl,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=VARCHAR},
+      crea_time = #{creaTime,jdbcType=TIMESTAMP},
+      relea_no = #{releaNo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

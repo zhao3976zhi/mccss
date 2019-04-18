@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cypro.ascpay.provider.replace.mapper.ReplaceReleaMapper">
+  <resultMap id="BaseResultMap" type="com.cypro.ascpay.provider.replace.entity.ReplaceReleaEntity">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="relea_name" jdbcType="VARCHAR" property="releaName" />
+    <result column="relea_no" jdbcType="VARCHAR" property="releaNo" />
+    <result column="relea_rate" jdbcType="VARCHAR" property="releaRate" />
+    <result column="relea_fee" jdbcType="VARCHAR" property="releaFee" />
+    <result column="relea_key" jdbcType="VARCHAR" property="releaKey" />
+    <result column="relea_type" jdbcType="VARCHAR" property="releaType" />
+    <result column="pass_id" jdbcType="BIGINT" property="passId" />
+    <result column="relea_states" jdbcType="BIGINT" property="releaStates" />
+    <result column="crea_time" jdbcType="TIMESTAMP" property="creaTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, relea_name, relea_no, relea_rate, relea_fee, relea_key, pass_id, relea_states, 
+    crea_time
+  </sql>
+  <sql id="table_name">
+    t_replace_relea
+  </sql>
+  <sql id="sqlWhere">
+    <where>
+      relea_states = 1
+      <if test="id != null and id != ''">
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="releaNo != null and releaNo != ''">
+        and relea_no = #{releaNo,jdbcType=VARCHAR}
+      </if>
+      <if test="releaType != null and releaType != ''">
+        and relea_type = #{releaType,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </sql>
+
+  <!-- 查询(含条件查询)-->
+  <select id="query" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    <include refid="table_name"/>
+    <include refid="sqlWhere"/>
+  </select>
+
+
+
+
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_replace_relea
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_replace_relea
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cypro.ascpay.provider.replace.entity.ReplaceReleaEntity">
+    insert into t_replace_relea (id, relea_name, relea_no, 
+      relea_rate, relea_fee, relea_key, 
+      pass_id, relea_states, crea_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{releaName,jdbcType=VARCHAR}, #{releaNo,jdbcType=VARCHAR}, 
+      #{releaRate,jdbcType=VARCHAR}, #{releaFee,jdbcType=VARCHAR}, #{releaKey,jdbcType=VARCHAR}, 
+      #{passId,jdbcType=BIGINT}, #{releaStates,jdbcType=BIGINT}, #{creaTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cypro.ascpay.provider.replace.entity.ReplaceReleaEntity">
+    insert into t_replace_relea
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="releaName != null">
+        relea_name,
+      </if>
+      <if test="releaNo != null">
+        relea_no,
+      </if>
+      <if test="releaRate != null">
+        relea_rate,
+      </if>
+      <if test="releaFee != null">
+        relea_fee,
+      </if>
+      <if test="releaKey != null">
+        relea_key,
+      </if>
+      <if test="passId != null">
+        pass_id,
+      </if>
+      <if test="releaStates != null">
+        relea_states,
+      </if>
+      <if test="creaTime != null">
+        crea_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="releaName != null">
+        #{releaName,jdbcType=VARCHAR},
+      </if>
+      <if test="releaNo != null">
+        #{releaNo,jdbcType=VARCHAR},
+      </if>
+      <if test="releaRate != null">
+        #{releaRate,jdbcType=VARCHAR},
+      </if>
+      <if test="releaFee != null">
+        #{releaFee,jdbcType=VARCHAR},
+      </if>
+      <if test="releaKey != null">
+        #{releaKey,jdbcType=VARCHAR},
+      </if>
+      <if test="passId != null">
+        #{passId,jdbcType=BIGINT},
+      </if>
+      <if test="releaStates != null">
+        #{releaStates,jdbcType=BIGINT},
+      </if>
+      <if test="creaTime != null">
+        #{creaTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cypro.ascpay.provider.replace.entity.ReplaceReleaEntity">
+    update t_replace_relea
+    <set>
+      <if test="releaName != null">
+        relea_name = #{releaName,jdbcType=VARCHAR},
+      </if>
+      <if test="releaNo != null">
+        relea_no = #{releaNo,jdbcType=VARCHAR},
+      </if>
+      <if test="releaRate != null">
+        relea_rate = #{releaRate,jdbcType=VARCHAR},
+      </if>
+      <if test="releaFee != null">
+        relea_fee = #{releaFee,jdbcType=VARCHAR},
+      </if>
+      <if test="releaKey != null">
+        relea_key = #{releaKey,jdbcType=VARCHAR},
+      </if>
+      <if test="passId != null">
+        pass_id = #{passId,jdbcType=BIGINT},
+      </if>
+      <if test="releaStates != null">
+        relea_states = #{releaStates,jdbcType=BIGINT},
+      </if>
+      <if test="creaTime != null">
+        crea_time = #{creaTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cypro.ascpay.provider.replace.entity.ReplaceReleaEntity">
+    update t_replace_relea
+    set relea_name = #{releaName,jdbcType=VARCHAR},
+      relea_no = #{releaNo,jdbcType=VARCHAR},
+      relea_rate = #{releaRate,jdbcType=VARCHAR},
+      relea_fee = #{releaFee,jdbcType=VARCHAR},
+      relea_key = #{releaKey,jdbcType=VARCHAR},
+      pass_id = #{passId,jdbcType=BIGINT},
+      relea_states = #{releaStates,jdbcType=BIGINT},
+      crea_time = #{creaTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

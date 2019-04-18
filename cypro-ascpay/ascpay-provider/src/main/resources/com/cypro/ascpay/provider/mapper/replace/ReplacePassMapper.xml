@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cypro.ascpay.provider.replace.mapper.ReplacePassMapper">
+  <resultMap id="BaseResultMap" type="com.cypro.ascpay.provider.replace.entity.ReplacePassEntity">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="rate" jdbcType="VARCHAR" property="rate" />
+    <result column="fee" jdbcType="VARCHAR" property="fee" />
+    <result column="crea_time" jdbcType="TIMESTAMP" property="creaTime" />
+    <result column="mer_no" jdbcType="VARCHAR" property="merNo" />
+    <result column="mer_key" jdbcType="VARCHAR" property="merKey" />
+    <result column="states" jdbcType="BIGINT" property="states" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `name`, rate, fee, crea_time, mer_no, mer_key, states
+  </sql>
+  <sql id="table_name">
+    t_replace_pass
+  </sql>
+  <sql id="sqlWhere">
+    <where>
+      states = 1
+      <if test="id != null and id != ''">
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="name != null and name != ''">
+        and 'name' = #{name,jdbcType=BIGINT}
+      </if>
+      <if test="merNo != null and merNo != ''">
+        and mer_no = #{merNo,jdbcType=BIGINT}
+      </if>
+    </where>
+  </sql>
+
+  <!-- 查询(含条件查询)-->
+  <select id="query" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    <include refid="table_name"/>
+    <include refid="sqlWhere"/>
+  </select>
+
+
+
+
+
+</mapper>

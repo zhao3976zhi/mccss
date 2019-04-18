@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ascpayweb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cypro-ascpay" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cypro-ascpay/ascpay-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cypro-ascpay/ascpay-provider" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cypro-ascpay/ascpay-rest" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cypro-reptile" charset="UTF-8" />
+  </component>
+</project>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cypro.ascpay.provider.replace.mapper.ReplaceInfoMapper">
+  <resultMap id="BaseResultMap" type="com.cypro.ascpay.provider.replace.entity.ReplaceInfoEntity">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="card_no" jdbcType="VARCHAR" property="cardNo" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="identity" jdbcType="VARCHAR" property="identity" />
+    <result column="validity" jdbcType="VARCHAR" property="validity" />
+    <result column="cvn" jdbcType="VARCHAR" property="cvn" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="crea_time" jdbcType="TIMESTAMP" property="creaTime" />
+    <result column="pass_id" jdbcType="BIGINT" property="passId" />
+    <result column="rate" jdbcType="VARCHAR" property="rate" />
+    <result column="fee" jdbcType="VARCHAR" property="fee" />
+    <result column="merid" jdbcType="VARCHAR" property="merid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `name`, card_no,bank_name, phone, `identity`, validity, cvn, user_id, crea_time, pass_id,rate,fee,merid
+  </sql>
+
+  <sql id="table_name">
+    t_replace_info
+  </sql>
+  <sql id="sqlWhere">
+    <where>
+      <if test="id != null and id != ''">
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="userId != null and userId != ''">
+        and user_id = #{userId,jdbcType=VARCHAR}
+      </if>
+      <if test="cardNo != null and cardNo != ''">
+        and card_no = #{cardNo,jdbcType=BIGINT}
+      </if>
+      <if test="passId != null and passId != ''">
+        and pass_id = #{passId,jdbcType=BIGINT}
+      </if>
+    </where>
+  </sql>
+
+  <!-- 查询(含条件查询)-->
+  <select id="query" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    <include refid="table_name"/>
+    <include refid="sqlWhere"/>
+  </select>
+
+  <insert id="insert" parameterType="com.cypro.ascpay.provider.replace.entity.ReplaceInfoEntity" keyProperty="id" useGeneratedKeys="true">
+    insert into t_replace_info ( `name`, card_no,
+      phone, bank_name ,`identity`, validity,
+      cvn, user_id, crea_time,
+      pass_id,rate,fee,merid)
+    values ( #{name,jdbcType=VARCHAR}, #{cardNo,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},
+      #{bankName,jdbcType=VARCHAR}, #{identity,jdbcType=VARCHAR}, #{validity,jdbcType=VARCHAR},
+      #{cvn,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{creaTime,jdbcType=TIMESTAMP},
+      #{passId,jdbcType=BIGINT},#{rate,jdbcType=VARCHAR},#{fee,jdbcType=VARCHAR},#{merid,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="update" parameterType="com.cypro.ascpay.provider.replace.entity.ReplaceInfoEntity">
+    update t_replace_info
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null">
+        card_no = #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null">
+        `identity` = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="validity != null">
+        validity = #{validity,jdbcType=VARCHAR},
+      </if>
+      <if test="cvn != null">
+        cvn = #{cvn,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="passId != null">
+        pass_id = #{passId,jdbcType=BIGINT},
+      </if>
+      <if test="rate != null">
+        rate = #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null">
+        fee = #{fee,jdbcType=VARCHAR},
+      </if>
+      <if test="creaTime != null">
+        crea_time = #{creaTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merid != null">
+        merid = #{merid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <where>
+      <if test="id != null and id != ''">
+          and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="merid != null and merid != ''">
+          and merid = #{merid,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </update>
+</mapper>
